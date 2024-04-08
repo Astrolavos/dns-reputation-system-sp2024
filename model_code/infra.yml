@@ -1,0 +1,78 @@
+services:
+  local_model:
+    name: "local_model"
+    model_folder: data/models
+    ground_truth_folder: data/ground-truth
+    ground_truth_path: ["data/models/local/train.json", "data/models/local/test.json"]
+
+visibility:
+  osint-adns-2023-10-07--2023-10-21:
+    ip_blocklist_as: "data/blocklist_as.json"
+    ip_blocklist_prefix: data/blocklist_bgp.json" 
+
+datasets:
+  as_radix: "data/tree_ipv4.202307.pickle"
+  popularity_list: "data/2023-06-17.tranco.csv"
+  wordlist: "data/google-10000-english-usa.txt"
+
+# Feature categories
+features:
+  lexical:
+    - domain_length
+    - number_ratio
+    - longest_human_readable_substring
+    - num_of_subdomains
+    - num_of_trigrams
+  network:
+    - distinct_ips
+    - distinct_asns
+    - distinct_bgp_countries
+    - distinct_bgp_prefixes
+    - distinct_bgp_orgs
+    - num_ip_reg_dates_fqdn
+    - distinct_as_registries
+    - distinct_ips_2ld_zone
+    - distinct_asn_2ld_zone
+    - distinct_bgp_countries_2ld_zone
+    - distinct_prefixes_2ld_zone
+    - distinct_as_names_2ld_zone
+    - num_ip_reg_dates_2ld
+    - distinct_as_registries_2ld_zone
+    - distinct_ips_3ld_zone
+    - distinct_asn_3ld_zone
+    - distinct_bgp_countries_3ld_zone
+    - distinct_prefixes_3ld_zone
+    - distinct_as_names_3ld_zone
+    - num_ip_reg_dates_3ld
+    - distinct_as_registries_3ld_zone
+  rhdn:
+    - rhdn_count
+    - rhdn_length_mean
+    - rhdn_length_median
+    - rhdn_length_std
+    - rhdn_1gram_mean
+    - rhdn_2gram_mean
+    - rhdn_3gram_mean
+    - rhdn_1gram_median
+    - rhdn_2gram_median
+    - rhdn_3gram_median
+    - rhdn_1gram_std
+    - rhdn_2gram_std
+    - rhdn_3gram_std
+    - distinct_tld_count
+    - avg_tld_freq
+    - stddev_tld_freq
+    - median_tld_freq
+    - com_other_ratio
+  popularity:
+    - pop_1m
+    - pop_500k
+    - pop_100k
+    - pop_10k
+    - pop_1k
+  ip_blocklist:
+    - ip_blocklist_asn
+    - ip_blocklist_bgp
+    - ip_blocklist_past_ips
+  registration:
+    - days_created_now
